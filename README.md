@@ -30,7 +30,7 @@ return  [[QWechatManager shareInstance] handleOpenURL:url];
 - (BOOL)handleOpenURL:(NSURL *)url;
 
 
-查看当前App是否已安装微信
+查看当前手机是否已安装微信
 
 - (BOOL)isWeiXinInstall;
 
