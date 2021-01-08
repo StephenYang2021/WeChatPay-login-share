@@ -1,5 +1,7 @@
 # QWechatManager
+
 微信支付，微信分享，微信登录
+
 1.第一步，导入头文件  #import "QWechatManager.h"
 
 2.AppDelegate 中注册方法didFinishLaunchingWithOptions中
