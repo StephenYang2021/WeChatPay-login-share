@@ -2,7 +2,7 @@
 
 微信支付，微信分享，微信登录
 
-1.第一步，导入头文件  #import "QWechatManager.h"
+1.第一步，将下载好的文件直接拖入自己的工程中，导入头文件  #import "QWechatManager.h"
 
 2.AppDelegate 中注册方法didFinishLaunchingWithOptions中
 [[QWechatManager shareInstance] initSDKWithAppId:@"wxdd6619e99fb****" appSecret:@"2e3bdb5505f7f10******745e3c23c6" universalLink:@"https://api.xueyouxuele.com/.well-known/"];
