@@ -2,7 +2,7 @@
 
 微信支付，微信分享，微信登录
 
-1.第一步，将下载好的文件直接拖入自己的工程中，导入头文件  #import "QWechatManager.h"
+1.第一步，导入微信SDK建议 pod 'WechatOpenSDK', '~> 1.8.7.1' 将git上下载好的文件直接拖入自己的工程中，导入头文件  #import "QWechatManager.h"
 
 2.AppDelegate 中注册方法didFinishLaunchingWithOptions中
 [[QWechatManager shareInstance] initSDKWithAppId:@"wxdd6619e99fb****" appSecret:@"2e3bdb5505f7f10******745e3c23c6" universalLink:@"https://api.xueyouxuele.com/.well-known/"];
@@ -16,22 +16,26 @@ return  [[QWechatManager shareInstance] handleOpenURL:url];
 微信支付：                [[QWechatManager shareInstance] payForWechat:payModel.appid partnerId:payModel.partnerid prepayId:payModel.prepayid nonceStr:payModel.noncestr timeStamp:payModel.timestamp package:payModel.package sign:payModel.sign viewController:self resultBlock:^(NSNumber * _Nonnull errCode) {}];
 
 5.备选方法：
-/// 初始化微信SDK
-/// @param appId 微信平台申请的appId
-/// @param appSecret 微信平台申请的AppSecret
-/// @param universalLink 唤起App的通用链接universalLink
+初始化微信SDK
+@param appId 微信平台申请的appId
+@param appSecret 微信平台申请的AppSecret
+@param universalLink 唤起App的通用链接universalLink
+
 - (void)initSDKWithAppId:(NSString *)appId appSecret:(NSString *)appSecret universalLink:(NSString *)universalLink;
 
 
-/// 微信打开其他app的回调
-/// @param url 微信启动第三方应用时传递过来的url
+微信打开其他app的回调
+@param url 微信启动第三方应用时传递过来的url
+
 - (BOOL)handleOpenURL:(NSURL *)url;
 
 
-/// 查看当前App是否已安装微信
+查看当前App是否已安装微信
+
 - (BOOL)isWeiXinInstall;
 
-/// 处理微信通过Universal Link启动App时传递的数据
+处理微信通过Universal Link启动App时传递的数据
+
 - (BOOL)application:(UIApplication *)application continueUserActivity:(nonnull NSUserActivity *)userActivity restorationHandler:(nonnull void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler;
 
 
@@ -86,7 +90,10 @@ return  [[QWechatManager shareInstance] handleOpenURL:url];
  */
 - (void)shareVideoWithTitle:( NSString * _Nullable )title description:(NSString * _Nullable )description videoUrl:(NSString *)videoUrl videoLowBandUrl:(NSString * _Nullable)videoLowBandUrl thumbImage:(id _Nullable)thumbImage scene:(int)scene completion:(void (^ __nullable)(BOOL success))completion;
 
-6.补充说明：使用前先导入微信SDK，我是直接使用了pod  ----pod 'WechatOpenSDK', '~> 1.8.7.1'
+6.配置白名单：Targets->info.plist中添加字段 LSApplicationQueriesSchemes 类型为Array 添加 weixin,weixinULAPI。
 
+7.URL Schemes 中Identifier 填写weixin URL Schemes填写自己在微信开放平台申请的appID 格式为wxdd6*****9fb77963
+
+8.完成集成
 
 
